@@ -9,7 +9,7 @@ CurrentCard = FlashCard()
 
 @app.route('/card')
 def card():
-    return jsonify({'content': 'Hello from the backend!'})
+    return jsonify({'content': CurrentCard.getContent()})
 
 @app.route('/new_card', methods=['POST'])
 def new_card():
