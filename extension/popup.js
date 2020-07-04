@@ -6,5 +6,9 @@ chrome.storage.sync.get('color', function(data) {
 })
 
 changeColor.onclick = function(element) {
-    fetch('http://localhost:5000/card')
+    fetch('http://localhost:5000/new_card', {
+        method: 'POST',
+        cors: 'no-cors',
+        body: JSON.stringify({content: 'test'})
+    })
 }
