@@ -1,13 +1,20 @@
 class FlashCard:
 
-    def __init__(self, content=""):
-        self._content = content
-    
-    def getContent(self):
-        return self._content
+    def __init__(self, front="", back=""):
+        self._front = front
+        self._back = back
 
-    def setContent(self, content):
-        self._content = content
-    
+    def getFront(self):
+        return self._front
+
+    def setFront(self, front):
+        self._front = front
+
+    def getBack(self):
+        return self._back
+
+    def setBack(self, back):
+        self._back = back
+
     def to_dict(self):
-        return {'content': self._content}
+        return {'front': self._front, 'back': self._back}
