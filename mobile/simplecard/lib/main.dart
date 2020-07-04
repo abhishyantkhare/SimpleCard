@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'flashcard.dart';
+import 'flashcardwidget.dart';
 
 void main() => runApp(MyApp());
 
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
             title: Text('FlashCards!'),
           ),
           body: Center(
-            child: FlashCard(),
+            child: FlashCardWidget(),
           ),
         ));
   }

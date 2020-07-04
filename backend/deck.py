@@ -10,4 +10,4 @@ class Deck:
         self._cards.append(_card)
 
     def to_dict(self):
-        return {'deck': [card.to_dict() for card in self._cards]}
+        return {'cards': [card.to_dict() for card in self._cards]}
