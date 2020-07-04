@@ -4,7 +4,10 @@ class Deck:
         self._cards = []
 
     def get_cards(self):
-        return self.get_cards()
+        return self._cards
     
     def add_card(self, _card):
         self._cards.append(_card)
+
+    def to_dict(self):
+        return {'deck': [card.to_dict() for card in self._cards]}

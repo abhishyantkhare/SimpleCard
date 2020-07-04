@@ -8,3 +8,6 @@ class FlashCard:
 
     def setContent(self, content):
         self._content = content
+    
+    def to_dict(self):
+        return {'content': self._content}
