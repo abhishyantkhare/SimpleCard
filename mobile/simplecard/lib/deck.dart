@@ -20,6 +20,7 @@ class Deck {
 class DeckWidget extends StatefulWidget {
   DeckWidget({@required this.currentCard});
   int currentCard;
+  bool showBack;
   @override
   _DeckWidgetState createState() => _DeckWidgetState();
 }
@@ -43,25 +44,21 @@ class _DeckWidgetState extends State<DeckWidget> {
   Widget build(BuildContext context) {
     var currentCard = widget.currentCard;
     return Container(
-      child: Card(
-        child: Center(
-          child: FutureBuilder<Deck>(
-            future: futureDeck,
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                List cards = snapshot.data.cards;
-                FlashCard card = cards[currentCard % cards.length];
-                return Text(card.back);
-              } else if (snapshot.hasError) {
-                return Text("${snapshot.error}");
-              }
-              return CircularProgressIndicator();
-            },
-          ),
+      child: Center(
+        child: FutureBuilder<Deck>(
+          future: futureDeck,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              List cards = snapshot.data.cards;
+              FlashCard card = cards[currentCard % cards.length];
+              return FlashCardWidget(flashcard: card, showBack: false);
+            } else if (snapshot.hasError) {
+              return Text("${snapshot.error}");
+            }
+            return CircularProgressIndicator();
+          },
         ),
       ),
-      width: 300,
-      height: 150,
     );
   }
 }

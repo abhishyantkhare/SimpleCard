@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'flashcardwidget.dart';
+import 'deckdisplay.dart';
 
 void main() => runApp(MyApp());
 
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
             title: Text('FlashCards!'),
           ),
           body: Center(
-            child: FlashCardWidget(),
+            child: DeckDisplay(),
             // child: FlashCardWidget(),
           ),
         ));

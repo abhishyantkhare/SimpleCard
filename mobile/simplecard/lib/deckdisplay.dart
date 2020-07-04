@@ -5,12 +5,12 @@ import 'package:http/http.dart' as http;
 import 'package:simplecard/deck.dart';
 import 'package:simplecard/flatbluebutton.dart';
 
-class FlashCardWidget extends StatefulWidget {
+class DeckDisplay extends StatefulWidget {
   @override
-  _FlashCardWidgetState createState() => _FlashCardWidgetState();
+  _DeckDisplayState createState() => _DeckDisplayState();
 }
 
-class _FlashCardWidgetState extends State<FlashCardWidget> {
+class _DeckDisplayState extends State<DeckDisplay> {
   Future<Deck> futureDeck;
   var url = 'http://localhost:5000/deck';
   int currentCard;
