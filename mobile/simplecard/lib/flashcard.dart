@@ -1,9 +1,10 @@
 class FlashCard {
-  final String content;
+  final String front;
+  final String back;
 
-  FlashCard({this.content});
+  FlashCard({this.front, this.back});
 
   factory FlashCard.fromJson(Map<String, dynamic> json) {
-    return FlashCard(content: json['content']);
+    return FlashCard(front: json['front'], back: json['back']);
   }
 }

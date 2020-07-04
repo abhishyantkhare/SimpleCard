@@ -51,7 +51,7 @@ class _DeckWidgetState extends State<DeckWidget> {
               if (snapshot.hasData) {
                 List cards = snapshot.data.cards;
                 FlashCard card = cards[currentCard % cards.length];
-                return Text(card.content);
+                return Text(card.back);
               } else if (snapshot.hasError) {
                 return Text("${snapshot.error}");
               }
