@@ -9,6 +9,9 @@ changeColor.onclick = function(element) {
     fetch('http://localhost:5000/new_card', {
         method: 'POST',
         cors: 'no-cors',
+        headers: {
+            'Content-Type': 'application/json'
+        },
         body: JSON.stringify({content: 'test'})
     })
 }
