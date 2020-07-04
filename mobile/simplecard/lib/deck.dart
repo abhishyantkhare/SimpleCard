@@ -18,7 +18,7 @@ class Deck {
 }
 
 class DeckWidget extends StatefulWidget {
-  DeckWidget({@required this.currentCard});
+  DeckWidget({@required this.currentCard, @required this.showBack});
   int currentCard;
   bool showBack;
   @override
@@ -51,7 +51,8 @@ class _DeckWidgetState extends State<DeckWidget> {
             if (snapshot.hasData) {
               List cards = snapshot.data.cards;
               FlashCard card = cards[currentCard % cards.length];
-              return FlashCardWidget(flashcard: card, showBack: false);
+              return FlashCardWidget(
+                  flashcard: card, showBack: widget.showBack);
             } else if (snapshot.hasError) {
               return Text("${snapshot.error}");
             }

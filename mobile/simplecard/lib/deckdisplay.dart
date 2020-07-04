@@ -14,6 +14,7 @@ class _DeckDisplayState extends State<DeckDisplay> {
   Future<Deck> futureDeck;
   var url = 'http://localhost:5000/deck';
   int currentCard;
+  bool showBack;
 
   Future<Deck> fetchDeck() async {
     final response = await http.get(url);
@@ -25,11 +26,18 @@ class _DeckDisplayState extends State<DeckDisplay> {
     super.initState();
     futureDeck = fetchDeck();
     currentCard = 0;
+    showBack = false;
   }
 
   void incrementCurrentCard() {
     setState(() {
       currentCard++;
+    });
+  }
+
+  void flipCard() {
+    setState(() {
+      showBack = !showBack;
     });
   }
 
@@ -40,7 +48,14 @@ class _DeckDisplayState extends State<DeckDisplay> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            DeckWidget(currentCard: this.currentCard),
+            DeckWidget(
+              currentCard: this.currentCard,
+              showBack: this.showBack,
+            ),
+            FlatBlueButton(
+              title: "Flip",
+              onPress: this.flipCard,
+            ),
             FlatBlueButton(
               onPress: this.incrementCurrentCard,
               title: "Next Card",
