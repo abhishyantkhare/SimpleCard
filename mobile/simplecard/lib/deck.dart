@@ -42,18 +42,26 @@ class _DeckWidgetState extends State<DeckWidget> {
   @override
   Widget build(BuildContext context) {
     var currentCard = widget.currentCard;
-    return FutureBuilder<Deck>(
-      future: futureDeck,
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          List cards = snapshot.data.cards;
-          FlashCard card = cards[currentCard % cards.length];
-          return Text(card.content);
-        } else if (snapshot.hasError) {
-          return Text("${snapshot.error}");
-        }
-        return CircularProgressIndicator();
-      },
+    return Container(
+      child: Card(
+        child: Center(
+          child: FutureBuilder<Deck>(
+            future: futureDeck,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                List cards = snapshot.data.cards;
+                FlashCard card = cards[currentCard % cards.length];
+                return Text(card.content);
+              } else if (snapshot.hasError) {
+                return Text("${snapshot.error}");
+              }
+              return CircularProgressIndicator();
+            },
+          ),
+        ),
+      ),
+      width: 300,
+      height: 150,
     );
   }
 }

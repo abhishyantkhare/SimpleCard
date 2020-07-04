@@ -36,18 +36,16 @@ class _FlashCardWidgetState extends State<FlashCardWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        child: Card(
-            child: Container(
-      child: Center(
-          child: Column(children: <Widget>[
-        DeckWidget(currentCard: this.currentCard),
-        FlatBlueButton(
-          onPress: this.incrementCurrentCard,
-          title: "Next Card",
-        )
-      ])),
-      width: 300,
-      height: 500,
-    )));
+      child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            DeckWidget(currentCard: this.currentCard),
+            FlatBlueButton(
+              onPress: this.incrementCurrentCard,
+              title: "Next Card",
+            )
+          ]),
+    );
   }
 }
