@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:simplecard/deck.dart';
-
+import 'package:simplecard/flatbluebutton.dart';
 
 class FlashCardWidget extends StatefulWidget {
   @override
@@ -13,6 +13,7 @@ class FlashCardWidget extends StatefulWidget {
 class _FlashCardWidgetState extends State<FlashCardWidget> {
   Future<Deck> futureDeck;
   var url = 'http://localhost:5000/deck';
+  int currentCard;
 
   Future<Deck> fetchDeck() async {
     final response = await http.get(url);
@@ -23,30 +24,30 @@ class _FlashCardWidgetState extends State<FlashCardWidget> {
   void initState() {
     super.initState();
     futureDeck = fetchDeck();
+    currentCard = 0;
   }
-   
+
+  void incrementCurrentCard() {
+    setState(() {
+      currentCard++;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Card(
-        child:Container(
-          child: Center(
-            child: FutureBuilder<Deck>(future: futureDeck, builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                var firstCard = snapshot.data.cards[0];
-                return Text(firstCard.content);
-              } else if (snapshot.hasError) {
-                return Text("${snapshot.error}");
-              }
-              return CircularProgressIndicator();
-              })
-            ),
-            width: 300,
-            height: 100,
+        child: Card(
+            child: Container(
+      child: Center(
+          child: Column(children: <Widget>[
+        DeckWidget(currentCard: this.currentCard),
+        FlatBlueButton(
+          onPress: this.incrementCurrentCard,
+          title: "Next Card",
         )
-      )
-    );
+      ])),
+      width: 300,
+      height: 500,
+    )));
   }
 }
-
-
